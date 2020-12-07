@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block body %}
+
+
+<div class="container-fluid m-0">
+    <!-- MAIN CODE -->
+  
+
+        <div class="col-md-12">
+            <!-- images -->
+            <div class="row mt-2 ">
+                <div class="col-md-14">
+                    <div class="card-columns">
+                    {% for i in images %}
+                        <div class="card text-white bg-dark mb-3" id="hoverimg">
+                        <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap" onclick="showModelwithImage('{{i.image}}')">
+                        <div class="card-body">
+                            <h5 class="card-title">{{i.title}}</h5>
+                            <a href="#" class="btn btn-primary" onclick="showModelwithImage('{{i.image}}')" >View</a>
+                            <a href="/media/{{i.image}}" class="btn btn-primary" download style="background-color: red" >Download</a>
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock body %}
+
+
+
+
+  

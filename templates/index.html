@@ -1,0 +1,308 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Imagebook</title>
+  </head>
+
+<style>
+body{
+  font-family: OCR A Std, monospace	;
+  background-color: rgba(1, 0, 5, 0.986);
+}
+
+#cat{
+  background-color: red;
+}
+
+.textcat{
+  color:white;
+  text-align:center;
+}
+
+.footer{
+  background-color: black   ;
+  padding-top:10px;
+  width:100%;
+  color: rgb(55, 165, 233);
+
+}
+
+
+
+
+.topnav {
+  overflow: hidden;
+  background-color: rgb(0, 153, 255) ;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  color: #0057f9;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+#hovercat:hover
+{
+    opacity: 0.5;
+    }
+
+
+#hoverimg:hover{
+  opacity: 0.7;
+}
+
+
+</style>
+
+
+
+
+  <body>
+    
+    <!--            NAVBAR             -->
+    <header>
+      <div class="topnav" id="myTopnav">
+        <!-- Brand/logo -->
+        <a href="{% url 'index' %}"><b>IMAGEBOOK</b></a>
+        <a class="nav-link" href="{% url 'index' %}">Home</a>
+        <a class="nav-link" href="https://www.youtube.com/channel/UCWvAi5w0HnioCtMgYO1ldjg">About</a>
+         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>   
+        </div>
+      </header>
+
+
+
+
+
+{% block body %}
+
+
+
+<!-- Header -->
+<header class="w3-display-container w3-content w3-center" style="max-width:1500px">
+  <img class="w3-image" src="{% static 'dani1.jpg' %}" alt="Me" width="1500" height="600">
+  <div class="w3-display-middle w3-padding-large w3-border w3-wide w3-text-light-grey w3-center">
+    <b><h1 class="w3-hide-medium w3-hide-small w3-xxxlarge">IMAGEBOOK</h1></b>
+    <h5 class="w3-hide-large" style="white-space:nowrap">IMAGEBOOK</h5>
+    <h5 class="w3-hide-large" style="white-space:nowrap">An Image Gallery</h5>
+    <h2 class="w3-hide-medium w3-hide-small">An Image Gallery</h2>
+  </div>
+</header>
+
+
+<div class="container-fluid m-0">
+<hr>
+<h1 class="textcat">CATERORIES</h1>
+ <hr> 
+  <!-- Category -->
+
+
+      <div class="col-md-12">
+          <!-- images -->
+          <div class="row mt-2 ">
+              <div class="col-md-14">
+                  <div class="card-columns">
+                          {% for c in categories %}
+                          <div class="card text-white bg-dark mb-3" id="hovercat">
+                          <a href="/category/{{c.pk}}"><img class="card-img-top" src="/media/{{c.catimage}}" alt="Card image cap"></a>
+                         <div class="card-body">
+                          <h5><a href="/category/{{c.pk}}" class="card-text">{{c.title}}</a></h5>
+                           </div>
+                        </div>
+                          {% endfor %}
+  
+
+                  </div>
+
+              </div>
+          </div>
+          
+      </div>
+  </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal " id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content"  style="background-color: rgb(39, 38, 38)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="#" id="image-show" class="img-fluid" alt="">
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+
+
+
+
+    {% block footer %}
+
+       
+         <footer class="footer">
+   
+           <!-- Footer Elements -->
+           <div class="container-siddh">
+       
+           <!-- Social buttons -->
+           <ul class="list-unstyled list-inline text-center">
+               <li class="list-inline-item">
+               <a href="https://www.facebook.com/siddhesh.mhatre.355" class="btn-floating btn-fb mx-2">
+                   <i class="fab fa-facebook fa-2x" > </i>
+               </a>
+               </li>
+               <li class="list-inline-item">
+               <a href="https://www.instagram.com/__siddheshm36/" class="btn-floating btn-tw mx-2">
+                   <i class="fab fa-instagram fa-2x" > </i>
+               </a>
+               </li>
+               <li class="list-inline-item">
+               <a href='https://web.whatsapp.com/' class="btn-floating btn-gplus mx-2">
+                   <i class="fab fa-whatsapp fa-2x"> </i>
+               </a>
+               </li>
+               <li class="list-inline-item">
+               <a href="https://mail.google.com/" class="btn-floating btn-li mx-2">
+                   <i class="fab fa-google-plus fa-2x"> </i>
+               </a>
+               </li>
+           </ul>
+           <!-- Social buttons -->
+       
+           </div>
+           <!-- Footer Elements -->
+       
+           <!-- Copyright -->
+          <div class="footer-copyright text-center py-3">© 2020 Copyright:<br>
+           <a href="https://www.instagram.com/__siddheshm36/">Created by Siddhesh Mhatre</a>
+           </div>
+           <!-- Copyright -->
+    
+           
+         </footer>
+   {% endblock footer %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById("myTopnav");
+      if (x.className === "topnav") {
+        x.className += " responsive";
+      } else {
+        x.className = "topnav";
+      }
+    }
+
+
+    function showModelwithImage(imageUrl)
+    {
+      $('#image-modal').modal('show')
+      $("#image-show").attr('src',`/media/${imageUrl}`)
+    }
+  </script>
+  
+
+  </body>
+</html>
