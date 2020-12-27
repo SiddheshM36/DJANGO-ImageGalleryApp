@@ -28,7 +28,7 @@ SECRET_KEY = '6@g63xg-q6vpu*iz7*#0qcm==fsg57pt5fpc_+7gs4-f)43(ih'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['imagebookgallery.herokuapp.com']
 
 
 # Application definition
