@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style>
+.footer{
+        position: fixed;
+}
+    .container{
+        padding: 50px 80px;
+        color: white;
+       
+    }
+</style>
+
+<div class="container">
+<form method="post"> 
+	{% csrf_token %} 
+	{{ form.as_p }} 
+    <h4>Are you sure you want to delete the image?</h4>
+	<input type="submit" value="Delete" class="btn btn-danger"> 
+</form>
+</div> 
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+<style>
+.footer{
+        position: fixed;
+}
+    .container{
+        padding: 50px 80px;
+        color: white;
+       
+    }
+
+</style>
+
+<div class="container">
+<form method="POST" enctype="multipart/form-data"> 
+{% csrf_token %}
+        {{form | crispy}}
+        <input type="Submit" value="Create" class="btn btn-warning">
+</form>
+{% endblock %}
+</div>

@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<style>
+    .footer{
+       position: fixed;
+
+    }
+
+    .container{
+        padding: 50px 80px;
+        color: white;
+       
+    }
+
+</style>
+    
+
+<div class="container">
+    <h1>Log In</h1>
+    <hr>
+<form method="POST">
+{% csrf_token %}
+{{form | crispy}}<br>
+<input type='Submit' value="Login" class="btn btn-success">
+<hr>
+<h6>Need an Account? &nbsp<a href="{% url 'register' %}" style="color:#37A5E9;"> Signup Now </a></h6>
+</form>
+</div>
+
+{% endblock %}

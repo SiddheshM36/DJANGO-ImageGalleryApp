@@ -1,4 +1,5 @@
 {% extends 'index.html' %}
+
 {% block body %}
 
 
@@ -13,11 +14,27 @@
                     <div class="card-columns">
                     {% for i in images %}
                         <div class="card text-white bg-dark mb-3" id="hoverimg">
-                        <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap" onclick="showModelwithImage('{{i.image}}')">
+                        <img class="card-img-top" src="{{i.image.url}}" alt="Card image cap" onclick="showModelwithImage('{{i.image.url}}')">
                         <div class="card-body">
-                            <h5 class="card-title">{{i.title}}</h5>
-                            <a href="#" class="btn btn-primary" onclick="showModelwithImage('{{i.image}}')" >View</a>
-                            <a href="/media/{{i.image}}" class="btn btn-primary" download style="background-color: red" >Download</a>
+                            <h5 class="card-title">Posted by: {{i.user}}</h5>
+                            <p>on: {{i.date_posted}}</p>
+                            <a href="#" class="btn btn-primary" onclick="showModelwithImage('{{i.image.url}}')" >View</a>
+                            <a href="{{i.image.url}}" class="btn btn-primary" style="background-color: red;" downloads >Download</a>
+                            {% if i.user == user %}
+                                    <a href= "{% url 'delete' i.id %}" class="btn btn-info"> Delete</a>
+                            {% endif %}
+                                
+                                <form action = "{% url 'like_post' %}" method = "POST" >
+                                {% csrf_token %}
+                                <input type='hidden' name='image_id' value='{{i.id}}'>
+                                {% if user not in i.liked.all %}
+                                        <button class="btn btn-success" type='submit'>Like</button>
+                                {% else %}
+                                        <button class="btn btn-warning" type='submit'>Unlike</button>
+                                {% endif %}
+                                </form>
+                                <strong>{{i.liked.all.count}} Likes</strong>
+
                         </div>
                         </div>
                     {% endfor %}
