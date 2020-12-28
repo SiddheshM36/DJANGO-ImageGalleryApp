@@ -18,12 +18,10 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    data = {'categories': categories, 'user': user, 'page_obj': page_obj}
+    data = {'categories': categories, 'user': user, 'page_obj': page_obj, 'images':images}
     return render(request, 'index.html', data)
 
 
-# def showing(request):
-#     return render(request, 'showimg.html')
 
 
 
@@ -34,7 +32,11 @@ def show_catergory(request, cid):
 
     images = Image.objects.filter(cat=cats)                 #filter image according to categories
 
-    data = {'images': images, 'categories': categories}
+    paginator = Paginator(images, 12)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    data = {'images': images, 'categories': categories , 'page_obj': page_obj}
     return render(request, 'index.html', data)
 
 
