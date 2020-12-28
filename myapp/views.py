@@ -11,8 +11,13 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
+    if 'search' in request.GET:                                 #searching
+        search = request.GET['search']
+        images = Image.objects.filter(user__username__icontains=search)  #for username use user__username__...
+    else:
+        images = Image.objects.all().order_by('-date_posted')
+    
     categories = Category.objects.all()
-    images = Image.objects.all().order_by('-date_posted')
     user = request.user
     paginator = Paginator(images, 12)
     page_number = request.GET.get('page')
