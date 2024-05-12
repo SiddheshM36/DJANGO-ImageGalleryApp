@@ -1,4 +1,4 @@
-# DJANGO-ImageGalleryApp 
+# DJANGO-ImageGalleryApp This was mine 2nd Project in DJANGO
 
 ## Deployed Link - https://imagebookgallery.herokuapp.com/
 
